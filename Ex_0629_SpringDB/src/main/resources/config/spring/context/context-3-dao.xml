@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- DeptDAO를 생성할 때 context-2-mybatis.xml에서 만들어둔 sqlSessionBean객체를
+	     생성자로 보내준다. -->
+	
+	<bean id="dept_daoBean" class="dao.DeptDAO">
+		<constructor-arg ref="sqlSessionBean"/>
+	</bean>	
+</beans>
+
+
+
+
+
+
+
+
+
+
+

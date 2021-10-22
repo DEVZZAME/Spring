@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 스프링에서 객체를 생성하기 위한 영역 -->
+	<!-- PersonVO p1 = new PersonVO(); -->
+	<bean id="p1" class="vo.PersonVO">
+		<!-- 스프링빈 : 스프링에서 객체를 생성하기 위한 태그 -->
+		
+		<!-- p1.setName("장성무당"); -->
+		<!-- PersonVO에 존재하는 setName()메서드에 이름을 추가하자! -->
+		<property name="name" value="장성무당"/>
+		<property name="age" value="30"/>
+		<property name="tel" value="010-1111-1111"/>
+		<!-- 위와 같이 setter를 통해 값을 추가하는 구조를 setter injection이라고 한다 -->
+	</bean>
+	<!-- PersonVO p2 = new PersonVO("이름", 20, "010-111-1111"); -->
+	<bean id="p2" class="vo.PersonVO">
+		<!-- PersonVO 생성자에서 명시한 name, age, tel 순서대로 값을 추가하지 않으면 오류 -->
+		<constructor-arg value="이길동"/>
+		<constructor-arg value="20"/>
+		<constructor-arg value="010-222-2222"/>
+		<!-- 위와 같이 생성자를 통해서 값을 추가하는 구조를 constructor injection이라고 한다!! -->
+	</bean>	
+	
+	<!-- root-context.xml에서 만들어진 객체(bean)는 기본적으로 싱글톤 형태로 생성
+	p1, p2 등의 baen 객체는 SpringContainer라는 영역에 저장되는데,
+	SpringContainer 영역은 ApplicationScope영역의 일부 임대해서 사용하고 있다.
+	즉, SpringContainer == Application이라고 생각하면 되며,
+	jsp 4대 저장영역인 application, request, page, session 중 application 스코프 영역에 저장된다. -->	
+</beans>

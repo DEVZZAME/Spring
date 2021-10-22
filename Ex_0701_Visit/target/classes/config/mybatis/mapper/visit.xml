@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapper 데이터베이스 접근 및 결과를 반환받는 속성파일 -->
+<mapper namespace="v">
+	<!-- 조회 -->
+	<select id="visit_list" resultType="visit">
+		select * from visit order by idx DESC
+	</select>
+	
+	<!-- 새글 추가 -->
+	<insert id="visit_insert" parameterType="visit">
+		insert into visit values(
+			seq_visit_idx.nextVal, 
+			#{name}, 
+			#{content}, 
+			#{pwd}, 
+			#{ip}, 
+			sysdate, 
+			#{filename}
+		)
+	</insert>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="visit_delete" parameterType="int">
+		delete from visit where idx=#{idx}
+	</delete>
+	
+	<!-- idx에 해당하는 게시물 조회 -->
+	<select id="visit_one" resultType="visit" parameterType="int">
+		select * from visit where idx=#{idx}
+	</select>
+	
+	<!-- 수정 -->
+	<update id="visit_update" parameterType="visit">
+		update visit set name=#{name}, content=#{content}, 
+		pwd=#{pwd}, ip=#{ip}, regdate=sysdate
+		where idx=#{idx}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
